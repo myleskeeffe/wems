@@ -8,9 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/maplibre-gl": "^1.13.1",
+    "@types/react-map-gl": "^5.2.9",
+    "maplibre-gl": "^1.14.0",
     "next": "10.1.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-map-gl": "^6.1.12",
     "react-spinners": "^0.10.6"
   },
   "devDependencies": {
