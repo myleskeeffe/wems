@@ -1,9 +1,10 @@
 // Import Express Framework & Init
-var express = require('express');
-var app = express();
+import express from 'express';
+const app = express();
 
 // Settings for Express
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 var port = process.env.PORT || 8080;
 

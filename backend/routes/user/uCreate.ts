@@ -1,17 +1,18 @@
 let createUser = require('../../utils/auth/createUser');
 
 module.exports = (req: any, res: any) => {
-    if (!req.params.fName || !req.params.uName || !req.params.email || !req.params.password) {
+    if (!req.body.fName || !req.body.uName || !req.body.email || !req.body.password) {
       return(res.json({error: 'Please fill all required fields.'}))
     }
-    let fName = req.params.fName
-    let lName = req.params.lName
-    let uName = req.params.uName
-    let phoneNumber = req.params.phoneNumber
-    let email = req.params.email
-    let password = req.params.password
+
+    let fName = req.body.fName
+    let lName = req.body.lName
+    let uName = req.body.uName
+    let phoneNumber = req.body.phoneNumber
+    let email = req.body.email
+    let password = req.body.password
     try {
-      createUser(fName, lName, uName, email, phoneNumber, password);
+      createUser(fName, lName, uName, phoneNumber, email, password);
       res.json({ success: "User Created: " + uName })
     }
     catch(err) {
