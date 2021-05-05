@@ -1,4 +1,6 @@
-module.exports = async function(User) {
-  console.log(User)
-  return await User.findAll();
+let ludbModel = require('../../models/index');
+let luuserModel = ludbModel.user;
+
+module.exports = async function() {
+  return await luuserModel.findAll();
 }
