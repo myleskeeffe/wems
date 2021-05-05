@@ -18,7 +18,7 @@ router.get('/', function (req:Request, res:any) {
 const user = require('./routes/user/index');
 router.use('/user', user);
 
-app.use('/', router);
+app.use('/api', router);
 
 
 // Start Listening
