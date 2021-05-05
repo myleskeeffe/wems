@@ -5,6 +5,6 @@ const uCreate = require('./uCreate')
 // let User = require("./models/User")(sequelize, DataTypes).User;
 
 models.get('/', list);
-models.post('/', uCreate);
+models.post('/create', uCreate);
 
 module.exports = models;
