@@ -8,6 +8,6 @@ var userM = require('./User');
 var dbUser = userM(sequelize, DataTypes);
 dbUser.sync();
 
-module.exports = {
+export const db:any = {
   user: dbUser
 }

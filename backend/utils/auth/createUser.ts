@@ -1,6 +1,6 @@
-let cudbModel = require('../../models/index');
-let cuuserModel = cudbModel.user;
+import { db } from '../../models/index';
 
-module.exports = async function(fname:any, lname:any, username:any, phoneNumber:any, email:any, password:any) {
-  return await cuuserModel.create({fName: fname, lName: lname, username: username, phoneNumber: phoneNumber, email: email, password:password});
+export const createUser:any = async function(fname:any, lname:any, username:any, phoneNumber:any, email:any, password:any) {
+  let User = db.user;
+  return await User.create({fName: fname, lName: lname, username: username, phoneNumber: phoneNumber, email: email, password:password});
 }

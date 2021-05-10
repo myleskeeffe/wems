@@ -1,4 +1,4 @@
-let findUser = require('../../utils/auth/findUser');
+import { findUser } from '../../utils/auth/findUser'
 
 module.exports = (req: any, res: any) => {
     if (!req.params.id) {

@@ -1,8 +1,9 @@
-let ludbModel = require('../../models/index');
-let luuserModel = ludbModel.user;
+import { db } from '../../models/index';
 
-module.exports = async function() {
-  return(await luuserModel.findAll({
+
+export const listUsers:any  = async function() {
+  let User = db.user
+  return(await User.findAll({
     attributes: ['fName', 'lName', 'email', 'username']
   }));
 }

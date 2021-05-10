@@ -1,4 +1,4 @@
-let createUser = require('../../utils/auth/createUser');
+import { createUser } from '../../utils/auth/createUser';
 
 module.exports = (req: any, res: any) => {
     if (!req.body.fName || !req.body.uName || !req.body.email || !req.body.password) {
