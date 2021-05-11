@@ -1,4 +1,4 @@
-export const AdressSuburbModel = function(sequelize: any, DataTypes: any){
+export const AddressSuburbModel = function(sequelize: any, DataTypes: any){
   return sequelize.define('AddressSuburb', {
     id: {
       type: DataTypes.INTEGER,

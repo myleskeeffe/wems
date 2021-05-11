@@ -20,6 +20,48 @@ let permissionGMM = PermissionGroupMapperModel(sequelize, DataTypes)
 import { PermissionsModel } from './Permissions';
 let permissionsM = PermissionsModel(sequelize, DataTypes)
 
+import { AddressModel } from './Address';
+let addressM = AddressModel(sequelize, DataTypes)
+
+import { AddressCountryModel } from './AddressCountry';
+let addressCountryM = AddressCountryModel(sequelize, DataTypes)
+
+import { AddressPostcodeModel } from './AddressPostcode';
+let addressPostcodeM = AddressPostcodeModel(sequelize, DataTypes)
+
+import { AddressStateModel } from './AddressState';
+let addressStateM = AddressStateModel(sequelize, DataTypes)
+
+import { AddressStreetModel } from './AddressStreet';
+let addressStreetM = AddressStreetModel(sequelize, DataTypes)
+
+import { AddressSuburbModel } from './AddressSuburb';
+let addressSuburbM = AddressSuburbModel(sequelize, DataTypes)
+
+import { CohortModel } from './Cohort';
+let cohortM = CohortModel(sequelize, DataTypes)
+
+import { CohortMapModel } from './CohortMap';
+let cohortMapM = CohortMapModel(sequelize, DataTypes)
+
+import { CompanyModel } from './Company';
+let companyM = CompanyModel(sequelize, DataTypes)
+
+import { ContactModel } from './Contact';
+let contactM = ContactModel(sequelize, DataTypes)
+
+import { FamilyModel } from './Family';
+let familyM = FamilyModel(sequelize, DataTypes)
+
+import { FamilyGuardianMapModel } from './familyGuardianMap';
+let familyGuardianMapM = FamilyGuardianMapModel(sequelize, DataTypes)
+
+import { GuardianModel } from './Guardian';
+let guardianM = GuardianModel(sequelize, DataTypes)
+
+import { StudentModel } from './Student';
+let studentM = StudentModel(sequelize, DataTypes)
+
 // Create relations between our tables - the ORM auto creates the fields for each association - so we don't manually specify them in the model
 userM.hasMany(userPM);
 userPM.belongsTo(userM);
