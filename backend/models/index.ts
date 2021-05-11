@@ -1,3 +1,5 @@
+// All requests for models come through here first - makes imports much easier, and simplifies model managament.
+
 // Import & Setup Sequelize (our ORM)
 import { Sequelize, DataTypes } from 'sequelize';
 
@@ -86,6 +88,15 @@ permissionsGM.hasMany(permissionGMM);
 
 permissionGMM.belongsTo(permissionsM);
 permissionsM.hasMany(permissionGMM);
+
+userM.hasOne(guardianM);
+guardianM.belongsTo(userM);
+
+guardianM.hasMany(familyGuardianMapM);
+familyGuardianMapM.belongsTo(guardianM);
+
+familyGuardianMapM.belongsTo(familyM);
+familyM.hasMany(familyGuardianMapM);
 
 // Sync all tables with the model
 sequelize.sync({alter: true});
