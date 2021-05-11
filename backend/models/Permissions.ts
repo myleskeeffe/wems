@@ -5,9 +5,6 @@ export const PermissionsModel = function(sequelize: any, DataTypes: any){
       primaryKey: true,
       autoIncrement: true
     },
-    permGroupMapperId: {
-      type: DataTypes.INTEGER
-    },
     permissionName: {
       type: DataTypes.STRING
     }

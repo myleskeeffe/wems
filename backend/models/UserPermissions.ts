@@ -5,11 +5,5 @@ export const UserPermissionsModel = function(sequelize: any, DataTypes: any){
       primaryKey: true,
       autoIncrement: true
     },
-    userId: {
-      type: DataTypes.INTEGER
-    },
-    permissionGroups: {
-      type: DataTypes.INTEGER
-    }
   })
 }
