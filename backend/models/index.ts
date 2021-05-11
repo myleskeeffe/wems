@@ -62,6 +62,18 @@ let guardianM = GuardianModel(sequelize, DataTypes)
 import { StudentModel } from './Student';
 let studentM = StudentModel(sequelize, DataTypes)
 
+import { WorkPlacementModel } from './WorkPlacement';
+let workPlacementM = WorkPlacementModel(sequelize, DataTypes);
+
+import { FormModel } from './Form';
+let formM = FormModel(sequelize, DataTypes);
+
+import { FormSubmissionModel } from './FormSubmission';
+let formSubmissionM = FormSubmissionModel(sequelize, DataTypes);
+
+import { FormTypeModel } from './FormType';
+let formTypeM = FormTypeModel(sequelize, DataTypes);
+
 // Create relations between our tables - the ORM auto creates the fields for each association - so we don't manually specify them in the model
 userM.hasMany(userPM);
 userPM.belongsTo(userM);
@@ -76,11 +88,7 @@ permissionGMM.belongsTo(permissionsM);
 permissionsM.hasMany(permissionGMM);
 
 // Sync all tables with the model
-userM.sync({alter: true});
-userPM.sync({alter: true});
-permissionsGM.sync({alter: true});
-permissionGMM.sync({alter: true});
-permissionsM.sync({alter: true});
+sequelize.sync({alter: true});
 
 // Export out a series of variables which can be accessed throughout the app
 export const db:any = {
@@ -88,5 +96,23 @@ export const db:any = {
   userPermissions: userPM,
   permissionGroups: permissionsGM,
   permissionGroupMapper: permissionGMM,
-  permissions: permissionsM
+  permissions: permissionsM,
+  address: addressM,
+  addressCountry: addressCountryM,
+  addressPostcode: addressPostcodeM,
+  addressState: addressStateM,
+  addressStreet: addressStreetM,
+  addressSuburbM: addressSuburbM,
+  cohort: cohortM,
+  cohortMap: cohortMapM,
+  company: companyM,
+  contact: contactM,
+  family: familyM,
+  familyGuardianMap: familyGuardianMapM,
+  guardian: guardianM,
+  student: studentM,
+  workplacement: workPlacementM,
+  form: formM,
+  formSubmission: formSubmissionM,
+  formType: formTypeM,
 }
