@@ -1,13 +1,32 @@
 // Import & Setup Sequelize (our ORM)
-const { Sequelize, DataTypes } = require('sequelize')
+import { Sequelize, DataTypes } from 'sequelize';
 
 // Initialise DB Connection (could be substituted with PostgreSQL in production)
 const sequelize = new Sequelize('sqlite:./database.sqlite3')
+import { UserModel } from './User';
+let userM = UserModel(sequelize, DataTypes)
+userM.sync();
 
-var userM = require('./User');
-var dbUser = userM(sequelize, DataTypes);
-dbUser.sync();
+import { UserPermissionsModel } from './UserPermissions';
+let userPM = UserPermissionsModel(sequelize, DataTypes)
+userPM.sync();
+
+import { PermissionGroupsModel } from './PermissionGroups';
+let permissionsGM = PermissionGroupsModel(sequelize, DataTypes)
+permissionsGM.sync();
+
+import { PermissionGroupMapperModel } from './PermissionGroupMapper';
+let permissionGMM = PermissionGroupMapperModel(sequelize, DataTypes)
+permissionGMM.sync();
+
+import { PermissionsModel } from './Permissions';
+let permissionsM = PermissionsModel(sequelize, DataTypes)
+permissionsM.sync();
 
 export const db:any = {
-  user: dbUser
+  user: userM,
+  userPermissions: userPM,
+  permissionGroups: permissionsGM,
+  permissionGroupMapper: permissionGMM,
+  permissions: permissionsM
 }
