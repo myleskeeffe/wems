@@ -6,7 +6,7 @@ export const FormSubmissionModel = function(sequelize: any, DataTypes: any){
       autoIncrement: true
     },
     formData: {
-      type: DataTypes.JSONTYPE,
+      type: DataTypes.JSON,
     }
   })
 }

@@ -9,7 +9,7 @@ export const FormTypeModel = function(sequelize: any, DataTypes: any){
       type: DataTypes.STRING,
     },
     format: {
-      type: DataTypes.JSONTYPE,
+      type: DataTypes.JSON,
     }
   })
 }
