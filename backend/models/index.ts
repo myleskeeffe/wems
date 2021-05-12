@@ -140,8 +140,8 @@ addressStreetM.belongsTo(addressStreetM);
 addressPostcodeM.hasMany(addressSuburbM);
 addressSuburbM.belongsTo(addressPostcodeM);
 
-addressStateM.hasMany(addressSuburbM);
-addressSuburbM.belongsTo(addressStateM);
+addressStateM.hasMany(addressPostcodeM);
+addressPostcodeM.belongsTo(addressStateM);
 
 addressCountryM.hasMany(addressStateM);
 addressStateM.belongsTo(addressCountryM);
