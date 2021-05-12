@@ -19,6 +19,9 @@ router.get('/', function (req:Request, res:any) {
 const user = require('./routes/user/index');
 router.use('/user', user);
 
+import { modelsCohort } from './routes/cohort/index';
+router.use('/cohorts', modelsCohort)
+
 app.use('/api', router);
 
 
