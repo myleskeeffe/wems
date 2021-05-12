@@ -5,7 +5,7 @@
 |ID      |Description|
 |--------|-----------|
 |backend |The backend API for the app - can be consumed by any application (including the frontend)|
-|frontend|The official frontend for the APP - utilitises the backend API|
+|frontend|The official frontend for the app - utilitises the backend API|
 
 ## Installation
 Installation & Usage guides will be added once the project nears workable prototypes and the codebase is relatively stable.
