@@ -55,7 +55,7 @@ let contactM = ContactModel(sequelize, DataTypes)
 import { FamilyModel } from './Family';
 let familyM = FamilyModel(sequelize, DataTypes)
 
-import { FamilyGuardianMapModel } from './familyGuardianMap';
+import { FamilyGuardianMapModel } from './FamilyGuardianMap';
 let familyGuardianMapM = FamilyGuardianMapModel(sequelize, DataTypes)
 
 import { GuardianModel } from './Guardian';
@@ -97,6 +97,54 @@ familyGuardianMapM.belongsTo(guardianM);
 
 familyGuardianMapM.belongsTo(familyM);
 familyM.hasMany(familyGuardianMapM);
+
+familyM.hasMany(studentM);
+studentM.belongsTo(familyM);
+
+studentM.hasMany(cohortMapM);
+cohortMapM.belongsTo(studentM);
+
+cohortM.hasMany(cohortMapM);
+cohortMapM.belongsTo(cohortM);
+
+formM.hasMany(cohortM);
+cohortM.belongsTo(formM);
+
+formM.hasMany(formSubmissionM);
+formSubmissionM.belongsTo(formM);
+
+formTypeM.hasMany(formM);
+formM.belongsTo(formTypeM);
+
+companyM.hasMany(contactM);
+contactM.belongsTo(companyM);
+
+workPlacementM.belongsTo(contactM);
+contactM.hasMany(workPlacementM);
+
+studentM.hasMany(workPlacementM);
+workPlacementM.belongsTo(studentM);
+
+workPlacementM.belongsTo(formSubmissionM);
+formSubmissionM.hasOne(workPlacementM);
+
+companyM.belongsTo(addressM);
+addressM.hasMany(companyM);
+
+addressStreetM.hasMany(addressM);
+addressM.belongsTo(addressStreetM);
+
+addressSuburbM.hasMany(addressStreetM);
+addressStreetM.belongsTo(addressStreetM);
+
+addressPostcodeM.hasMany(addressSuburbM);
+addressSuburbM.belongsTo(addressPostcodeM);
+
+addressStateM.hasMany(addressSuburbM);
+addressSuburbM.belongsTo(addressStateM);
+
+addressCountryM.hasMany(addressStateM);
+addressStateM.belongsTo(addressCountryM);
 
 // Sync all tables with the model
 sequelize.sync({alter: true});
