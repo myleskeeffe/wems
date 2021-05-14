@@ -37,6 +37,9 @@ let addressStateM = AddressStateModel(sequelize, DataTypes)
 import { AddressStreetModel } from './AddressStreet';
 let addressStreetM = AddressStreetModel(sequelize, DataTypes)
 
+import { AddressSuburbStreetModel } from './AddressSuburbStreet';
+let addressSuburbStreetM = AddressSuburbStreetModel(sequelize, DataTypes);
+
 import { AddressSuburbModel } from './AddressSuburb';
 let addressSuburbM = AddressSuburbModel(sequelize, DataTypes)
 
@@ -131,11 +134,17 @@ formSubmissionM.hasOne(workPlacementM);
 companyM.belongsTo(addressM);
 addressM.hasMany(companyM);
 
-addressStreetM.hasMany(addressM);
-addressM.belongsTo(addressStreetM);
+// addressStreetM.hasMany(addressM);
+// addressM.belongsTo(addressStreetM);
 
-addressSuburbM.hasMany(addressStreetM);
-addressStreetM.belongsTo(addressStreetM);
+// addressSuburbM.hasMany(addressStreetM);
+// addressStreetM.belongsTo(addressStreetM);
+
+addressStreetM.hasMany(addressSuburbStreetM);
+addressSuburbStreetM.belongsTo(addressStreetM);
+
+addressSuburbStreetM.belongsTo(addressSuburbM);
+addressSuburbM.hasMany(addressSuburbStreetM);
 
 addressPostcodeM.hasMany(addressSuburbM);
 addressSuburbM.belongsTo(addressPostcodeM);
