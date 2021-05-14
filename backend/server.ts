@@ -22,6 +22,9 @@ router.use('/user', user);
 import { modelsCohort } from './routes/cohort/index';
 router.use('/cohorts', modelsCohort)
 
+import { modelsGroup } from './routes/groups/index';
+router.use('/group', modelsCohort)
+
 app.use('/api', router);
 
 
