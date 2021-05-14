@@ -5,5 +5,8 @@ export const PermissionGroupsModel = function(sequelize: any, DataTypes: any){
       primaryKey: true,
       autoIncrement: true
     },
+    name: {
+      type: DataTypes.STRING
+    }
   })
 }
