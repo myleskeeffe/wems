@@ -1,6 +1,8 @@
 # Work Experience Management System
 *Originally created for a school assignment - although I'd be interested if you actually use it in the wild :P*
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2f41effa6d33ca67014d/maintainability)](https://codeclimate.com/github/myleskeeffe/wems/maintainability)
+
 **Security Notice**
 This project has huge security flaws in its current state. I haven't yet got around to setting up authentication properly (as this was a part of an assignment - I skipped over that  to make the deadline - however once done - I am looking to fix this up). It is also possible to 'login' as anyone.
 
