@@ -18,7 +18,7 @@ const colors = {
     yellow: 'bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 focus:ring-offset-yellow-200',
     green: 'bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200',
     blue: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200',
-    indigo: 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200',
+    indigo: 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white',
     purple: 'bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200',
     pink: 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200',
 };
@@ -33,7 +33,7 @@ const Button = (props: Props) => {
                 props.icon ? 'flex justify-center items-center ' : ''
             } ${
                 colors[props.color]
-            } text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+            } w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                 props.disabled ? ' opacity-70 cursor-not-allowed' : ''
             }${!props.label ? ' w-12 h-12' : ''} ${props.rounded ? 'rounded-full' : 'rounded-lg '}`}
         >
