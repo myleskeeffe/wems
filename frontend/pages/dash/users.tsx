@@ -5,12 +5,18 @@ import useSWR from "swr";
 import { apiurl } from "../../config";
 import { ClipLoader } from "react-spinners";
 import Navbar from "../../components/elements/navbar/Navbar";
+import { AiOutlineUserDelete, AiOutlineUserSwitch } from "react-icons/ai";
+import InputText from "../../components/elements/forms/inputtext/InputText";
+import React, { createContext, useState } from 'react';
 
 const fetcher = (args) => fetch(args).then((res) => res.json());
 
-function Users() {
-  const { data, error } = useSWR(apiurl + "api/user/", fetcher);
+function editUser() {}
+function deleteUser() {}
 
+
+function Users(filter) {
+  const { data, error } = useSWR(apiurl + "api/user/?filter=" + filter, fetcher);
   if (error) return <div>Error loading data...</div>;
   if (!data)
     return (
@@ -39,6 +45,20 @@ function Users() {
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900">{user.username}</div>
           </td>
+          <td className="px-6 py-4 whitespace-nowrap">
+            <div className="text-sm text-gray-900 flex">
+              <Button
+                onClick={editUser}
+                icon={<AiOutlineUserSwitch />}
+                label="Edit"
+              ></Button>
+              <Button
+                onClick={deleteUser}
+                icon={<AiOutlineUserDelete />}
+                label="Delete"
+              ></Button>
+            </div>
+          </td>
         </tr>
       ))}
     </tbody>
@@ -46,6 +66,10 @@ function Users() {
 }
 
 export default function Home() {
+  const [filterTerm, setFilterTerm] = React.useState("");
+  const handleFilterChange = event => {
+    setFilterTerm(event.target.value);
+  };
   const router = useRouter();
   return (
     <div className="bg-gray-100">
@@ -59,6 +83,7 @@ export default function Home() {
             <p className="block text-xs uppercase font-bold text-gray-700">
               ALL USERS
             </p>
+            <InputText onChange={handleFilterChange} value={filterTerm} helper="Search For"></InputText>
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <th
@@ -91,8 +116,14 @@ export default function Home() {
                 >
                   Username
                 </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Actions
+                </th>
               </thead>
-              {Users()}
+              {Users(filterTerm)}
             </table>
           </div>
         </div>
