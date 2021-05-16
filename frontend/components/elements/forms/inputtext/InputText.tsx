@@ -14,6 +14,7 @@ interface Props {
   withForceIndications?: boolean;
   id?: string;
   onChange?: (event) => void;
+  defaultValue?: string;
   value?: string;
 }
 
@@ -44,9 +45,10 @@ const InputText = (props: Props) => {
         )}
         <input
           onChange={props.onChange}
-          value={props.value}
+          defaultValue={props.defaultValue}
           id={props.id}
           disabled={props.disabled}
+          value={props.value}
           className={`${props.error ? "ring-red-500 ring-2" : ""}${
             props.helper || props.icon
               ? !props.square

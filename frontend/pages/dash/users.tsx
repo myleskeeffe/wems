@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Button from "../../components/elements/buttons/Button";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { apiurl } from "../../config";
 import { ClipLoader } from "react-spinners";
 import Navbar from "../../components/elements/navbar/Navbar";
@@ -11,11 +11,19 @@ import React, { createContext, useState } from 'react';
 
 const fetcher = (args) => fetch(args).then((res) => res.json());
 
-function editUser() {}
-function deleteUser() {}
-
+const deleteUser = async (user, filter) => {
+  if (!user) {
+    return
+  }
+  const res = await fetch(apiurl + "api/user/" + user, {
+    method: 'DELETE'
+  });
+  mutate(apiurl + "api/user/?filter=" + filter)
+  const result = await res.json()
+};
 
 function Users(filter) {
+  const router = useRouter();
   const { data, error } = useSWR(apiurl + "api/user/?filter=" + filter, fetcher);
   if (error) return <div>Error loading data...</div>;
   if (!data)
@@ -47,13 +55,13 @@ function Users(filter) {
           </td>
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900 flex">
-              <Button
-                onClick={editUser}
+              {/* <Button
+                onClick={() => router.push(`/dash/users/edit?user=${user.id}`)}
                 icon={<AiOutlineUserSwitch />}
                 label="Edit"
-              ></Button>
+              ></Button> */}
               <Button
-                onClick={deleteUser}
+                onClick={() => deleteUser(user.id, filter)}
                 icon={<AiOutlineUserDelete />}
                 label="Delete"
               ></Button>
@@ -125,6 +133,7 @@ export default function Home() {
               </thead>
               {Users(filterTerm)}
             </table>
+            <p className="block text-xs text-gray-700">Search results capped at 100. Try using a filter above.</p>
           </div>
         </div>
       </div>
