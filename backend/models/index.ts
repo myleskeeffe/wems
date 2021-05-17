@@ -64,6 +64,9 @@ let workPlacementM = WorkPlacementModel(sequelize, DataTypes);
 import { FamilyStudentMapModel } from './FamilyStudentMap';
 let familyStudentMapM = FamilyStudentMapModel(sequelize, DataTypes);
 
+import { VisitationModel } from './Visitation';
+let visitationM = VisitationModel(sequelize, DataTypes);
+
 // Create relations between our tables - the ORM auto creates the fields for each association - so we don't manually specify them in the model
 userM.hasMany(userPM);
 userPM.belongsTo(userM);
@@ -95,7 +98,6 @@ cohortMapM.belongsTo(userM);
 cohortM.hasMany(cohortMapM);
 cohortMapM.belongsTo(cohortM);
 
-
 companyM.hasMany(contactM);
 contactM.belongsTo(companyM);
 
@@ -120,6 +122,12 @@ addressPostcodeM.belongsTo(addressStateM);
 addressCountryM.hasMany(addressStateM);
 addressStateM.belongsTo(addressCountryM);
 
+visitationM.belongsTo(workPlacementM);
+visitationM.belongsTo(userM);
+
+userM.hasMany(visitationM);
+workPlacementM.hasOne(visitationM);
+
 // Sync all tables with the model
 sequelize.sync();
 
@@ -142,5 +150,6 @@ export const db:any = {
   family: familyM,
   familyGuardianMap: familyGuardianMapM,
   familyStudentMap: familyGuardianMapM,
-  workplacement: workPlacementM
+  workplacement: workPlacementM,
+  visitation: visitationM
 }
