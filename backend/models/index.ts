@@ -61,23 +61,11 @@ let familyM = FamilyModel(sequelize, DataTypes)
 import { FamilyGuardianMapModel } from './FamilyGuardianMap';
 let familyGuardianMapM = FamilyGuardianMapModel(sequelize, DataTypes)
 
-import { GuardianModel } from './Guardian';
-let guardianM = GuardianModel(sequelize, DataTypes)
-
-import { StudentModel } from './Student';
-let studentM = StudentModel(sequelize, DataTypes)
-
 import { WorkPlacementModel } from './WorkPlacement';
 let workPlacementM = WorkPlacementModel(sequelize, DataTypes);
 
-import { FormModel } from './Form';
-let formM = FormModel(sequelize, DataTypes);
-
-import { FormSubmissionModel } from './FormSubmission';
-let formSubmissionM = FormSubmissionModel(sequelize, DataTypes);
-
-import { FormTypeModel } from './FormType';
-let formTypeM = FormTypeModel(sequelize, DataTypes);
+import { FamilyStudentMapModel } from './FamilyStudentMap';
+let familyStudentMapM = FamilyStudentMapModel(sequelize, DataTypes);
 
 // Create relations between our tables - the ORM auto creates the fields for each association - so we don't manually specify them in the model
 userM.hasMany(userPM);
@@ -92,32 +80,24 @@ permissionsGM.hasMany(permissionGMM);
 permissionGMM.belongsTo(permissionsM);
 permissionsM.hasMany(permissionGMM);
 
-userM.hasOne(guardianM);
-guardianM.belongsTo(userM);
-
-guardianM.hasMany(familyGuardianMapM);
-familyGuardianMapM.belongsTo(guardianM);
+userM.hasMany(familyGuardianMapM);
+familyGuardianMapM.belongsTo(userM);
 
 familyGuardianMapM.belongsTo(familyM);
 familyM.hasMany(familyGuardianMapM);
 
-familyM.hasMany(studentM);
-studentM.belongsTo(familyM);
+familyM.hasMany(familyStudentMapM);
+familyStudentMapM.belongsTo(familyM);
 
-studentM.hasMany(cohortMapM);
-cohortMapM.belongsTo(studentM);
+familyStudentMapM.belongsTo(userM);
+userM.hasMany(familyStudentMapM);
+
+userM.hasMany(cohortMapM);
+cohortMapM.belongsTo(userM);
 
 cohortM.hasMany(cohortMapM);
 cohortMapM.belongsTo(cohortM);
 
-formM.hasMany(cohortM);
-cohortM.belongsTo(formM);
-
-formM.hasMany(formSubmissionM);
-formSubmissionM.belongsTo(formM);
-
-formTypeM.hasMany(formM);
-formM.belongsTo(formTypeM);
 
 companyM.hasMany(contactM);
 contactM.belongsTo(companyM);
@@ -125,20 +105,11 @@ contactM.belongsTo(companyM);
 workPlacementM.belongsTo(contactM);
 contactM.hasMany(workPlacementM);
 
-studentM.hasMany(workPlacementM);
-workPlacementM.belongsTo(studentM);
-
-workPlacementM.belongsTo(formSubmissionM);
-formSubmissionM.hasOne(workPlacementM);
+userM.hasMany(workPlacementM);
+workPlacementM.belongsTo(userM);
 
 companyM.belongsTo(addressM);
 addressM.hasMany(companyM);
-
-// addressStreetM.hasMany(addressM);
-// addressM.belongsTo(addressStreetM);
-
-// addressSuburbM.hasMany(addressStreetM);
-// addressStreetM.belongsTo(addressStreetM);
 
 addressStreetM.hasMany(addressSuburbStreetM);
 addressSuburbStreetM.belongsTo(addressStreetM);
