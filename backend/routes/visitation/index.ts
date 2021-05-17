@@ -10,4 +10,4 @@ models.put('/:id', updateVisitation);
 models.post('/', createVisitation);
 models.delete('/:id', deleteVisitation);
 
-export const modelsContact = models;
+export const modelsVisitation = models;

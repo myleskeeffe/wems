@@ -9,7 +9,7 @@ export const VisitationModel = function(sequelize: any, DataTypes: any){
       type: DataTypes.STRING
     },
     date: {
-      type: DataTypes.DATETIME
+      type: DataTypes.DATE
     }
   })
 }

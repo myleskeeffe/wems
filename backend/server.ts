@@ -40,6 +40,9 @@ router.use('/company', modelsCompany);
 import { modelsContact } from './routes/contact/index';
 router.use('/contact', modelsContact);
 
+import { modelsVisitation } from './routes/visitation/index';
+router.use('/visitation', modelsVisitation);
+
 app.use('/api', router);
 
 
