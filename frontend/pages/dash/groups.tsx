@@ -80,7 +80,7 @@ export default function Home() {
       </Head>
       <div id="root">
         <Navbar></Navbar>
-        <div id="bodyContent" className="ml-64 p-4">
+        <div id="bodyContent" className="md:ml-64 p-4">
           <div className="w-full py-4 px-8 bg-white shadow-lg rounded-lg my-4">
             <p className="block text-xs uppercase font-bold text-gray-700">
               ALL GROUPS
