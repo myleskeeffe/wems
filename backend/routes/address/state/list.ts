@@ -5,7 +5,7 @@ import { Op } from 'sequelize';
 export const listState = function (req: any, res: any) {
   let Country = db.addressCountry
   let State = db.addressState
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   State.findAll({
     where: {
       [Op.or]: [

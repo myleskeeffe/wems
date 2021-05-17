@@ -6,7 +6,7 @@ export const listPostcode = function (req: any, res: any) {
   let Country = db.addressCountry
   let State = db.addressState
   let Postcode = db.addressPostcode
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   Postcode.findAll({
     where: {
       [Op.or]: [

@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 
 export const listCohorts = function (req: any, res: any) {
   let Cohort = db.cohort
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   Cohort.findAll({
     where: {
       [Op.or]: [

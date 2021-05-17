@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 
 export const listContact = function (req: any, res: any) {
   let Contact = db.contact
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   Contact.findAll({
     where: {
       [Op.or]: [

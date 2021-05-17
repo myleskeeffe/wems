@@ -3,7 +3,7 @@ import { dev } from '../../config';
 import { Op } from 'sequelize';
 
 export const listPlacements = function (req: any, res: any) {
-  let filter = req.query.filter;
+  let filter = req.query.filter ?? "";
   let Placement = db.workplacement
   let Contact = db.contact
   let Company = db.company

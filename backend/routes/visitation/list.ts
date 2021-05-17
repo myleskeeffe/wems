@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 
 export const listVisitation = function (req: any, res: any) {
   let Visitation = db.visitation
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   Visitation.findAll({
     where: {
       [Op.or]: [

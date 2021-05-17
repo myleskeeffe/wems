@@ -83,8 +83,8 @@ export const listAddress = async function (req: any, res: any) {
   let Postcode = db.addressPostcode
   let Suburb = db.addressSuburb
   let Address = db.address
-  let filter = req.query.filter
-  let filterType = req.query.filterType
+  let filter = req.query.filter ?? ""
+  let filterType = req.query.filterType ?? ""
 
   try {
     if (filterType == "suburb") {

@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 
 export const listGroups = function (req: any, res: any) {
   let Group = db.permissionGroups
-  let filter = req.query.filter;
+  let filter = req.query.filter ?? "";
   Group.findAll({
     where: {
       [Op.or]: [

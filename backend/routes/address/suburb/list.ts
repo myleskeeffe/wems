@@ -7,7 +7,7 @@ export const listSuburb = function (req: any, res: any) {
   let State = db.addressState
   let Postcode = db.addressPostcode
   let Suburb = db.addressSuburb
-  let filter = req.query.filter
+  let filter = req.query.filter ?? ""
   Suburb.findAll({
     where: {
       [Op.or]: [
