@@ -31,8 +31,14 @@ router.use('/group', modelsGroup)
 import { modelsPlacement } from './routes/workplacements/index';
 router.use('/placement', modelsPlacement);
 
-import {  modelsAddress} from './routes/address/index';
+import { modelsAddress } from './routes/address/index';
 router.use('/address', modelsAddress); 
+
+import { modelsCompany } from './routes/company/index';
+router.use('/company', modelsCompany);
+
+import { modelsContact } from './routes/contact/index';
+router.use('/contact', modelsContact);
 
 app.use('/api', router);
 

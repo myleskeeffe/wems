@@ -3,7 +3,7 @@ import { dev } from '../../config'
 
 export const createPlacement = function (req: any, res: any) {
   let Placement = db.workplacement
-  if (!req.body.startDate || !req.body.endDate || !req.body.consent || !req.body.approval || !req.body.notes || !req.body.formSubmitted) {
+  if (!req.body.contactId || !req.body.userId || !req.body.startDate || !req.body.endDate || !req.body.consent || !req.body.approval || !req.body.notes || !req.body.formSubmitted) {
     return(res.status(400).json({error: 'Please enter all fields.'}))
   }
   Placement.create({
@@ -12,7 +12,9 @@ export const createPlacement = function (req: any, res: any) {
     consent: req.body.consent,
     approval: req.body.approval,
     notes: req.body.notes,
-    formSubmitted: req.body.formSubmitted
+    formSubmitted: req.body.formSubmitted,
+    ContactId: req.body.contactId,
+    UserId: req.body.userId
   }).then(function(placements: any){
     res.json(placements)
   }).catch(function(error:any){

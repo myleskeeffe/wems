@@ -1,15 +1,18 @@
 import { db } from '../../models/index';
 import { dev } from '../../config'
 
-export const createCompany = function (req: any, res: any) {
-  let Company = db.company
-  if (!req.body.name || !req.body.phone || !req.body.email) {
+export const createContact = function (req: any, res: any) {
+  let Contact = db.contact
+  if (!req.body.fName || !req.body.phone || !req.body.email || !req.body.title || !req.body.lName || !req.body.companyId) {
     return(res.status(400).json({error: 'Please enter all fields.'}))
   }
-  Company.create({
-    name: req.body.name,
+  Contact.create({
+    firstName: req.body.fName,
+    lastName: req.body.lName,
+    email: req.body.email,
+    title: req.body.title,
     phone: req.body.phone,
-    email: req.body.email
+    CompanyId: req.body.companyId
   }).then(function(company: any){
     res.json(company)
   }).catch(function(error:any){

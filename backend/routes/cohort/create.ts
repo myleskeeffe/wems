@@ -3,12 +3,11 @@ import { dev } from '../../config'
 
 export const createCohort = function (req: any, res: any) {
   let Cohort = db.cohort
-  if (!req.body.name || !req.body.formid) {
+  if (!req.body.name) {
     return(res.status(400).json({error: 'Please enter all fields.'}))
   }
   Cohort.create({
-    name: req.body.name,
-    FormId: req.body.formid
+    name: req.body.name
   }).then(function(cohorts: any){
     res.json(cohorts)
   }).catch(function(error:any){
