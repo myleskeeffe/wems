@@ -2,7 +2,7 @@ import { db } from '../../../models/index';
 import { dev } from '../../../config';
 import { Op } from 'sequelize';
 
-export const listCountry = function (req: any, res: any) {
+export const listState = function (req: any, res: any) {
   let Country = db.addressCountry
   let State = db.addressState
   let filter = req.query.filter
@@ -10,10 +10,14 @@ export const listCountry = function (req: any, res: any) {
     where: {
       [Op.or]: [
         {id: {[Op.substring]: filter}},
-        {stateName: {[Op.substring]: filter}}
+        {stateName: {[Op.substring]: filter}},
       ]
     },
-    limit: 100
+    limit: 100,
+    include: [{
+      model: Country,
+      required: false
+    }]
   }).then(function(states: any){
     res.json(states)
   }).catch(function(error:any){
