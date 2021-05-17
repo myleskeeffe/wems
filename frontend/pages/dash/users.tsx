@@ -5,26 +5,120 @@ import useSWR, { mutate } from "swr";
 import { apiurl } from "../../config";
 import { ClipLoader } from "react-spinners";
 import Navbar from "../../components/elements/navbar/Navbar";
-import { AiOutlineUserDelete, AiOutlineUserSwitch } from "react-icons/ai";
+import {
+  AiOutlineUserDelete,
+  AiOutlineUserSwitch,
+  AiOutlineUser,
+} from "react-icons/ai";
 import InputText from "../../components/elements/forms/inputtext/InputText";
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
+import Modal from "react-modal";
 
 const fetcher = (args) => fetch(args).then((res) => res.json());
 
 const deleteUser = async (user, filter) => {
   if (!user) {
-    return
+    return;
   }
   const res = await fetch(apiurl + "api/user/" + user, {
-    method: 'DELETE'
+    method: "DELETE",
   });
-  mutate(apiurl + "api/user/?filter=" + filter)
-  const result = await res.json()
+  mutate(apiurl + "api/user/?filter=" + filter);
+  const result = await res.json();
 };
 
+async function updateUser(event, filter) {
+  event.preventDefault();
+  console.log(event);
+
+  if (
+    !event.target.fName.value ||
+    !event.target.lName.value ||
+    !event.target.uName.value ||
+    !event.target.email.value
+  ) {
+    return;
+  }
+  const res = await fetch(apiurl + "api/user/" + event.target.id.value, {
+    body: JSON.stringify({
+      fName: event.target.fName.value,
+      lName: event.target.lName.value,
+      uName: event.target.uName.value,
+      email: event.target.email.value,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+  });
+  const result = await res.json();
+  mutate(apiurl + "api/user/?filter=" + filter);
+}
+
+function updateUserModal(user, closeModal, filter) {
+  return (
+    <form
+      onSubmit={function (event) {
+        updateUser(event, filter);
+        closeModal();
+      }}
+      className="ml-64"
+    >
+      <input id="id" type="hidden" value={user.id}></input>
+      <InputText
+        placeholder="john@example.com"
+        defaultValue={user.email}
+        id="email"
+        type="email"
+        label="Email"
+        required
+        icon={<AiOutlineUser></AiOutlineUser>}
+      ></InputText>
+      <InputText
+        placeholder="John"
+        defaultValue={user.fName}
+        id="fName"
+        type="text"
+        label="First Name"
+        required
+        icon={<AiOutlineUser></AiOutlineUser>}
+      ></InputText>
+      <InputText
+        placeholder="Appleseed"
+        defaultValue={user.lName}
+        id="lName"
+        type="text"
+        label="Last Name"
+        required
+        icon={<AiOutlineUser></AiOutlineUser>}
+      ></InputText>
+      <InputText
+        placeholder="john.a"
+        defaultValue={user.username}
+        id="uName"
+        type="text"
+        label="Username"
+        required
+        icon={<AiOutlineUser></AiOutlineUser>}
+      ></InputText>
+      <Button submit label="Save" color="indigo"></Button>
+    </form>
+  );
+}
+
 function Users(filter) {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
   const router = useRouter();
-  const { data, error } = useSWR(apiurl + "api/user/?filter=" + filter, fetcher);
+  const { data, error } = useSWR(
+    apiurl + "api/user/?filter=" + filter,
+    fetcher
+  );
   if (error) return <div>Error loading data...</div>;
   if (!data)
     return (
@@ -55,11 +149,11 @@ function Users(filter) {
           </td>
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900 flex">
-              {/* <Button
-                onClick={() => router.push(`/dash/users/edit?user=${user.id}`)}
+              <Button
+                onClick={openModal}
                 icon={<AiOutlineUserSwitch />}
                 label="Edit"
-              ></Button> */}
+              ></Button>
               <Button
                 onClick={() => deleteUser(user.id, filter)}
                 icon={<AiOutlineUserDelete />}
@@ -67,6 +161,9 @@ function Users(filter) {
               ></Button>
             </div>
           </td>
+          <Modal isOpen={modalIsOpen}>
+            {updateUserModal(user, closeModal, filter)}
+          </Modal>
         </tr>
       ))}
     </tbody>
@@ -75,7 +172,7 @@ function Users(filter) {
 
 export default function Home() {
   const [filterTerm, setFilterTerm] = React.useState("");
-  const handleFilterChange = event => {
+  const handleFilterChange = (event) => {
     setFilterTerm(event.target.value);
   };
   const router = useRouter();
@@ -91,7 +188,11 @@ export default function Home() {
             <p className="block text-xs uppercase font-bold text-gray-700">
               ALL USERS
             </p>
-            <InputText onChange={handleFilterChange} value={filterTerm} helper="Search For"></InputText>
+            <InputText
+              onChange={handleFilterChange}
+              value={filterTerm}
+              helper="Search For"
+            ></InputText>
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <th
@@ -133,7 +234,9 @@ export default function Home() {
               </thead>
               {Users(filterTerm)}
             </table>
-            <p className="block text-xs text-gray-700">Search results capped at 100. Try using a filter above.</p>
+            <p className="block text-xs text-gray-700">
+              Search results capped at 100. Try using a filter above.
+            </p>
           </div>
         </div>
       </div>

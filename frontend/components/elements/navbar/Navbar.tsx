@@ -69,13 +69,19 @@ const Navbar = ({ active }: Props) => {
               </li>
               <hr className="my-4 md:min-w-full" />
               <h6 className="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                Students
+                Groups
               </h6>
               <li className="items-center">
-                <Link href="/dash/students">
+                <Link href="/dash/groups">
                   <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUser className="inline mr-4" />
                     All
+                  </a>
+                </Link>
+                <Link href="/dash/groups/create">
+                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUserAdd className="inline mr-4" />
+                    Create
                   </a>
                 </Link>
               </li>

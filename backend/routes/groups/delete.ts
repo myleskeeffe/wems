@@ -1,10 +1,17 @@
 import { db } from '../../models/index';
 import { dev } from '../../config';
 
-export const listGroups = function (req: any, res: any) {
+export const deleteGroup = function (req: any, res: any) {
+  if (!req.params.id) {
+    return res.status(400).json({error: "No Id."})
+  }
   let Group = db.permissionGroups
-  Group.findAll({}).then(function(groups: any){
-    res.json(groups)
+  Group.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(group: any){
+    res.json(group)
   }).catch(function(error:any){
     if (dev) {
       res.status(400).json({error: error})
