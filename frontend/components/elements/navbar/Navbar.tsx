@@ -6,8 +6,10 @@ import {
   AiFillBook,
   AiOutlineUser,
   AiOutlineUserAdd,
+  AiOutlineUsergroupAdd,
+  AiFillCompass
 } from "react-icons/ai";
-
+import { IoIosBusiness } from "react-icons/io";
 interface Props {
   active?: string;
 }
@@ -90,13 +92,13 @@ const Navbar = ({ active }: Props) => {
               <li className="items-center">
                 <Link href="/dash/groups">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUser className="inline mr-4" />
+                    <AiOutlineUsergroupAdd className="inline mr-4" />
                     All
                   </a>
                 </Link>
                 <Link href="/dash/groups/create">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUserAdd className="inline mr-4" />
+                    <AiOutlineUsergroupAdd className="inline mr-4" />
                     Create
                   </a>
                 </Link>
@@ -108,13 +110,13 @@ const Navbar = ({ active }: Props) => {
               <li className="items-center">
                 <Link href="/dash/addresses">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUser className="inline mr-4" />
+                    <AiFillCompass className="inline mr-4" />
                     All
                   </a>
                 </Link>
                 <Link href="/dash/addresses/create">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUserAdd className="inline mr-4" />
+                    <AiFillCompass className="inline mr-4" />
                     Create
                   </a>
                 </Link>
@@ -124,13 +126,13 @@ const Navbar = ({ active }: Props) => {
                 Cohorts
               </h6>
               <li className="items-center">
-                <Link href="/dash/groups">
+                <Link href="/dash/cohorts">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUser className="inline mr-4" />
                     All
                   </a>
                 </Link>
-                <Link href="/dash/groups/create">
+                <Link href="/dash/cohorts/create">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUserAdd className="inline mr-4" />
                     Create
@@ -142,15 +144,15 @@ const Navbar = ({ active }: Props) => {
                 Companies
               </h6>
               <li className="items-center">
-                <Link href="/dash/groups">
+                <Link href="/dash/companies">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUser className="inline mr-4" />
+                    <IoIosBusiness className="inline mr-4" />
                     All
                   </a>
                 </Link>
-                <Link href="/dash/groups/create">
+                <Link href="/dash/companies/create">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
-                    <AiOutlineUserAdd className="inline mr-4" />
+                    <IoIosBusiness className="inline mr-4" />
                     Create
                   </a>
                 </Link>
