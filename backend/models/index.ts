@@ -34,9 +34,6 @@ let addressPostcodeM = AddressPostcodeModel(sequelize, DataTypes)
 import { AddressStateModel } from './AddressState';
 let addressStateM = AddressStateModel(sequelize, DataTypes)
 
-import { AddressStreetModel } from './AddressStreet';
-let addressStreetM = AddressStreetModel(sequelize, DataTypes)
-
 import { AddressSuburbStreetModel } from './AddressSuburbStreet';
 let addressSuburbStreetM = AddressSuburbStreetModel(sequelize, DataTypes);
 
@@ -111,11 +108,8 @@ workPlacementM.belongsTo(userM);
 companyM.belongsTo(addressM);
 addressM.hasMany(companyM);
 
-addressStreetM.hasMany(addressSuburbStreetM);
-addressSuburbStreetM.belongsTo(addressStreetM);
-
-addressSuburbStreetM.belongsTo(addressSuburbM);
-addressSuburbM.hasMany(addressSuburbStreetM);
+addressM.belongsTo(addressSuburbM);
+addressSuburbM.hasMany(addressM);
 
 addressPostcodeM.hasMany(addressSuburbM);
 addressSuburbM.belongsTo(addressPostcodeM);
@@ -127,7 +121,7 @@ addressCountryM.hasMany(addressStateM);
 addressStateM.belongsTo(addressCountryM);
 
 // Sync all tables with the model
-sequelize.sync({alter: true});
+sequelize.sync();
 
 // Export out a series of variables which can be accessed throughout the app
 export const db:any = {
@@ -140,7 +134,6 @@ export const db:any = {
   addressCountry: addressCountryM,
   addressPostcode: addressPostcodeM,
   addressState: addressStateM,
-  addressStreet: addressStreetM,
   addressSuburb: addressSuburbM,
   cohort: cohortM,
   cohortMap: cohortMapM,

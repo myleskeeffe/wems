@@ -5,7 +5,7 @@ export const AddressModel = function(sequelize: any, DataTypes: any){
       primaryKey: true,
       autoIncrement: true
     },
-    streetNumber: {
+    streetAddress: {
       type: DataTypes.STRING
     }
   })
