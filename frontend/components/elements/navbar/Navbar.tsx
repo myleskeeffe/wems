@@ -28,7 +28,7 @@ const Navbar = ({ active }: Props) => {
             <ul className="flex-col min-w-full flex list-none">
               <li className="items-center">
                 <Link href="/dash/home">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiFillHome className="inline mr-4" />
                     Home
                   </a>
@@ -40,7 +40,7 @@ const Navbar = ({ active }: Props) => {
               </h6>
               <li className="items-center">
                 <Link href="/dash/users">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUser className="inline mr-4" />
                     All
                   </a>
@@ -48,7 +48,7 @@ const Navbar = ({ active }: Props) => {
               </li>
               <li className="items-center">
                 <Link href="/dash/users/create">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUserAdd className="inline mr-4" />
                     Create
                   </a>
@@ -61,9 +61,25 @@ const Navbar = ({ active }: Props) => {
               </h6>
               <li className="items-center">
                 <Link href="/dash/placements">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiFillBook className="inline mr-4" />
                     All
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/dash/placements/contacts">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiFillBook className="inline mr-4" />
+                    Contacts
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/dash/placements">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiFillBook className="inline mr-4" />
+                    Visitations
                   </a>
                 </Link>
               </li>
@@ -73,13 +89,67 @@ const Navbar = ({ active }: Props) => {
               </h6>
               <li className="items-center">
                 <Link href="/dash/groups">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUser className="inline mr-4" />
                     All
                   </a>
                 </Link>
                 <Link href="/dash/groups/create">
-                  <a className="text-xs uppercase py-2 font-bold block text-gray-700 hover:text-indigo-600">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUserAdd className="inline mr-4" />
+                    Create
+                  </a>
+                </Link>
+              </li>
+              <hr className="my-4 md:min-w-full" />
+              <h6 className="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Addresses
+              </h6>
+              <li className="items-center">
+                <Link href="/dash/addresses">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUser className="inline mr-4" />
+                    All
+                  </a>
+                </Link>
+                <Link href="/dash/addresses/create">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUserAdd className="inline mr-4" />
+                    Create
+                  </a>
+                </Link>
+              </li>
+              <hr className="my-4 md:min-w-full" />
+              <h6 className="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Cohorts
+              </h6>
+              <li className="items-center">
+                <Link href="/dash/groups">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUser className="inline mr-4" />
+                    All
+                  </a>
+                </Link>
+                <Link href="/dash/groups/create">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUserAdd className="inline mr-4" />
+                    Create
+                  </a>
+                </Link>
+              </li>
+              <hr className="my-4 md:min-w-full" />
+              <h6 className="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Companies
+              </h6>
+              <li className="items-center">
+                <Link href="/dash/groups">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiOutlineUser className="inline mr-4" />
+                    All
+                  </a>
+                </Link>
+                <Link href="/dash/groups/create">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiOutlineUserAdd className="inline mr-4" />
                     Create
                   </a>
