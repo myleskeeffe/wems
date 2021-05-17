@@ -19,6 +19,9 @@ export const WorkPlacementModel = function(sequelize: any, DataTypes: any){
     },
     notes: {
       type: DataTypes.TEXT
+    },
+    formSubmitted: {
+      type: DataTypes.BOOLEAN
     }
   })
 }

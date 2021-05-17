@@ -28,6 +28,11 @@ router.use('/cohorts', modelsCohort)
 import { modelsGroup } from './routes/groups/index';
 router.use('/group', modelsGroup)
 
+import { modelsPlacement } from './routes/workplacements/index';
+router.use('/placement', modelsPlacement);
+
+import {  modelsAddress} from './routes/address/index';
+router.use('/address', modelsAddress); 
 
 app.use('/api', router);
 
