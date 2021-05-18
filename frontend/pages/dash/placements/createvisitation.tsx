@@ -8,6 +8,7 @@ import {
   AiFillBook,
   AiOutlineUser,
   AiOutlineUserAdd,
+  AiOutlineUsergroupAdd
 } from "react-icons/ai";
 import useSWR from "swr";
 import { apiurl } from "../../../config";
@@ -16,17 +17,17 @@ import Navbar from "../../../components/elements/navbar/Navbar";
 import InputText from "../../../components/elements/forms/inputtext/InputText";
 
 
-const createCompany = async (event) => {
+const createVisitation = async (event) => {
   event.preventDefault();
-  if (!event.target.name.value || !event.target.email.value || !event.target.phone.value || !event.target.addressId.value) {
+  if (!event.target.userId || !event.target.workPlacementId || !event.target.date || !event.target.documentName) {
     return
   }
-  const res = await fetch(apiurl + "api/company/", {
+  const res = await fetch(apiurl + "api/visitation/", {
     body: JSON.stringify({
-      name: event.target.name.value,
-      email: event.target.email.value,
-      phone: event.target.phone.value,
-      addressId: event.target.addressId.value
+      userId: event.target.userId.value,
+      workPlacementId: event.target.workPlacementId.value,
+      date: event.target.date.value,
+      documentName: event.target.documentName.value
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -42,49 +43,49 @@ export default function Home() {
   return (
     <div className="bg-gray-100">
       <Head>
-        <title>Create Company - Companies - Dash - Keja</title>
+        <title>Create Visitation - Visitations - Dash - Keja</title>
       </Head>
       <div id="root">
         <Navbar />
         <div id="bodyContent" className="ml-64 p-4">
           <div className="w-full py-4 px-8 bg-white shadow-lg rounded-lg my-4">
             <p className="block text-xs uppercase font-bold text-gray-700">
-              CREATE COMPANY
+              CREATE VISITATION
             </p>
             <br />
-            <form onSubmit={createCompany}>
+            <form onSubmit={createVisitation}>
               <InputText
-                placeholder="ACME Corp"
-                id="name"
-                type="text"
-                label="Company Name"
+                placeholder="1"
+                id="userId"
+                type="number"
+                label="Teacher ID (User ID)"
                 required
-                icon={<AiOutlineUser></AiOutlineUser>}
-              ></InputText>
-              <InputText
-                placeholder="info@acme.org"
-                id="email"
-                type="email"
-                label="Company Email"
-                required
-                icon={<AiOutlineUser></AiOutlineUser>}
-              ></InputText>
-              <InputText
-                placeholder="0123456789"
-                id="phone"
-                type="tel"
-                label="Company Phone"
-                required
-                icon={<AiOutlineUser></AiOutlineUser>}
+                icon={<AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>}
               ></InputText>
               <InputText
                 placeholder="1"
-                id="addressId"
+                id="workPlacementId"
                 type="number"
-                label="Address ID"
+                label="Workplacement ID"
                 required
-                icon={<AiOutlineUser></AiOutlineUser>}
+                icon={<AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>}
               ></InputText>
+              <InputText
+                placeholder="H:/WE/JohnSmith.docx"
+                id="documentName"
+                type="text"
+                label="Form Name / Location"
+                required
+                icon={<AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>}
+              ></InputText>
+              <InputText
+                placeholder=""
+                id="date"
+                type="datetime-local"
+                label="Date & Time of Visit"
+                required
+                icon={<AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>}
+              ></InputText> 
               <Button submit label="Create" color="indigo"></Button>
             </form>
           </div>

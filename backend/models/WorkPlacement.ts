@@ -6,10 +6,10 @@ export const WorkPlacementModel = function(sequelize: any, DataTypes: any){
       autoIncrement: true
     },
     startDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATEONLY
     },
     endDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATEONLY
     },
     consent: {
       type: DataTypes.BOOLEAN

@@ -70,18 +70,42 @@ const Navbar = ({ active }: Props) => {
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/dash/placements/contacts">
+                <Link href="/dash/placements/create">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiFillBook className="inline mr-4" />
-                    Contacts
+                    Create
                   </a>
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/dash/placements">
+                <Link href="/dash/placements/listcontacts">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiFillBook className="inline mr-4" />
+                    List Contacts
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/dash/placements/createcontacts">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiFillBook className="inline mr-4" />
+                    Create Contact
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/dash/placements/visitations">
                   <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
                     <AiFillBook className="inline mr-4" />
                     Visitations
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/dash/placements/createvisitation">
+                  <a className="text-xs uppercase py-1 font-bold block text-gray-700 hover:text-indigo-600">
+                    <AiFillBook className="inline mr-4" />
+                    Add Visitation
                   </a>
                 </Link>
               </li>

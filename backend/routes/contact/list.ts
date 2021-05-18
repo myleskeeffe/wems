@@ -4,6 +4,9 @@ import { Op } from 'sequelize';
 
 export const listContact = function (req: any, res: any) {
   let Contact = db.contact
+  let Address = db.address
+  let AddressSuburb = db.addressSuburb
+  let Company = db.company
   let filter = req.query.filter ?? ""
   Contact.findAll({
     where: {
@@ -15,6 +18,18 @@ export const listContact = function (req: any, res: any) {
       ]
     },
     limit: 100,
+    include: [{
+      model: Company,
+      required: true,
+      include: [{
+        model: Address,
+        required: true,
+        include: [{
+          model: AddressSuburb,
+          required: true
+        }]
+      }]
+    }]
   }).then(function (contacts: any) {
     res.json(contacts)
   }).catch(function (error: any) {

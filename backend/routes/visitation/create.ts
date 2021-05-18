@@ -3,7 +3,7 @@ import { dev } from '../../config'
 
 export const createVisitation = function (req: any, res: any) {
   let Visitation = db.visitation
-  if (!req.body.documentName || !req.body.date || !req.body.email || !req.body.workPlacementId || !req.body.userId) {
+  if (!req.body.documentName || !req.body.date || !req.body.workPlacementId || !req.body.userId) {
     return(res.status(400).json({error: 'Please enter all fields.'}))
   }
   Visitation.create({

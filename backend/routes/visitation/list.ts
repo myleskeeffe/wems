@@ -5,16 +5,47 @@ import { Op } from 'sequelize';
 export const listVisitation = function (req: any, res: any) {
   let Visitation = db.visitation
   let filter = req.query.filter ?? ""
+  let User = db.user
+  let Placement = db.workplacement
+  let Company = db.company
+  let Address = db.address
+  let Contact = db.contact
+  let AddressSuburb = db.addressSuburb
   Visitation.findAll({
-    where: {
-      [Op.or]: [
-        { id: { [Op.substring]: filter } },
-        { firstName: { [Op.substring]: filter } },
-        { lastName: { [Op.substring]: filter } },
-        { email: { [Op.substring]: filter } },
-      ]
-    },
+    include: [
+      {
+        model: User,
+        required: true
+      },
+      {
+        model: Placement,
+        required: true,
+        include: [
+          {
+            model: User,
+            required: true
+          },
+          {
+          model: Contact,
+          required: true,
+          include: [{
+            model: Company,
+            required: true,
+            include: [{
+              model: Address,
+              required: true,
+              include: [{
+                model: AddressSuburb,
+                required: true
+              }
+            ]
+            }]
+          }]
+        }]
+      }
+    ],
     limit: 100,
+
   }).then(function (contacts: any) {
     res.json(contacts)
   }).catch(function (error: any) {
